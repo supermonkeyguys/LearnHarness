@@ -1,0 +1,41 @@
+{
+  "name": "harness-learning",
+  "version": "0.1.0",
+  "description": "Harness framework learning project",
+  "scripts": {
+    "m1:tool-use":    "ts-node m1-llm-agent-basics/code/01-tool-use-basic.ts",
+    "m1:react":       "ts-node m1-llm-agent-basics/code/02-react-loop.ts",
+    "m1:tokens":      "ts-node m1-llm-agent-basics/code/03-token-counter.ts",
+    "m2:structured":  "ts-node m2-prompt-engineering/code/01-structured-output.ts",
+    "m2:template":    "ts-node m2-prompt-engineering/code/02-system-prompt-template.ts",
+    "m2:tester":      "ts-node m2-prompt-engineering/code/03-prompt-tester.ts",
+    "m3:fsm":         "ts-node m3-state-machine/code/01-fsm.ts",
+    "m3:states":      "ts-node m3-state-machine/code/02-harness-states.ts",
+    "m3:checkpoint":  "ts-node m3-state-machine/code/03-checkpoint.ts",
+    "m3:gate":        "ts-node m3-state-machine/code/04-quality-gate.ts",
+    "m4:dag":         "ts-node m4-multi-agent/code/01-dag.ts",
+    "m4:scheduler":   "ts-node m4-multi-agent/code/02-scheduler.ts",
+    "m4:orchestrator":"ts-node m4-multi-agent/code/03-orchestrator.ts",
+    "m4:subagent":    "ts-node m4-multi-agent/code/04-subagent.ts",
+    "m4:merge":       "ts-node m4-multi-agent/code/05-merge.ts",
+    "m5:memory":      "ts-node m5-persistence/code/01-memory-types.ts",
+    "m5:compressor":  "ts-node m5-persistence/code/02-context-compressor.ts",
+    "m5:session":     "ts-node m5-persistence/code/03-session-manager.ts",
+    "m5:checkpoint":  "ts-node m5-persistence/code/04-checkpoint-v2.ts",
+    "m6:validator":   "ts-node m6-eval/code/01-deterministic-validator.ts",
+    "m6:judge":       "ts-node m6-eval/code/02-llm-judge.ts",
+    "m6:eval":        "ts-node m6-eval/code/03-eval-suite.ts",
+    "m6:router":      "ts-node m6-eval/code/04-model-router.ts",
+    "m7:hooks":       "ts-node m7-infrastructure/code/01-hook-system.ts",
+    "m7:logger":      "ts-node m7-infrastructure/code/02-logger.ts",
+    "m7:metrics":     "ts-node m7-infrastructure/code/03-metrics.ts",
+    "m7:retry":       "ts-node m7-infrastructure/code/04-retry.ts",
+    "m7:config":      "ts-node m7-infrastructure/code/05-config.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}

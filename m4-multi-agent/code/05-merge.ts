@@ -1,3 +1,5 @@
+export {};
+
 /**
  * M4 - 结果合并
  *
@@ -99,7 +101,7 @@ class MergeEngine {
 
 // ---- 演示 ----
 
-function main() {
+function mergeDemo() {
   console.log("=== Merge Engine Demo ===\n");
 
   const outputs: SubagentOutput[] = [
@@ -152,4 +154,4 @@ function main() {
   console.log("4. 合并后必须重新运行质量门控（tsc / tests）验证结果");
 }
 
-main();
+mergeDemo();

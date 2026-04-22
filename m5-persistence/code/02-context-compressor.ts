@@ -1,3 +1,5 @@
+export {};
+
 /**
  * M5 - Context 压缩器
  *

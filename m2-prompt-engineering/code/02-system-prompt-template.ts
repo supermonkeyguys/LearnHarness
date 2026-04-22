@@ -1,3 +1,5 @@
+export {};
+
 /**
  * M2 - System Prompt 模板系统
  *

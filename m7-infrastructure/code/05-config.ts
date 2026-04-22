@@ -1,3 +1,5 @@
+export {};
+
 /**
  * M7 - 配置管理
  *
@@ -6,6 +8,10 @@
  * - 类型安全：配置错误在启动时就能发现
  * - 敏感配置（API keys）来自环境变量，不进配置文件
  */
+
+// ---- 工具类型 ----
+
+type DeepPartial<T> = { [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K] };
 
 // ---- 配置结构 ----
 
@@ -113,7 +119,7 @@ function validateConfig(config: HarnessConfig): ValidationError[] {
 // ---- 配置加载器 ----
 
 class ConfigLoader {
-  load(overrides: Partial<HarnessConfig> = {}): HarnessConfig {
+  load(overrides: DeepPartial<HarnessConfig> = {}): HarnessConfig {
     // 深度合并默认配置和覆盖值
     const config = this.deepMerge(DEFAULT_CONFIG, overrides) as HarnessConfig;
 

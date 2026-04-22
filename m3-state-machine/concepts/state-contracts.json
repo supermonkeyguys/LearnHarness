@@ -1,0 +1,37 @@
+{
+  "IDLE": {
+    "enterCondition": "Initial state or after reset",
+    "exitCondition": "A task is submitted",
+    "invariant": "No active work in progress"
+  },
+  "PLANNING": {
+    "enterCondition": "Task submitted, no plan exists yet",
+    "exitCondition": "Plan generated with ≥1 steps",
+    "invariant": "taskDescription is non-empty"
+  },
+  "EXECUTING": {
+    "enterCondition": "Valid plan exists, current step is pending",
+    "exitCondition": "Current step produces a result (success or failure)",
+    "invariant": "currentStepIndex < plan.length"
+  },
+  "VERIFYING": {
+    "enterCondition": "Step execution produced output",
+    "exitCondition": "Verification command exits with 0 (pass) or non-0 (fail)",
+    "invariant": "stepResult is non-empty"
+  },
+  "RETRYING": {
+    "enterCondition": "Verification failed",
+    "exitCondition": "retryCount < MAX_RETRIES → re-execute; else → FAILED",
+    "invariant": "retryCount ≥ 1"
+  },
+  "DONE": {
+    "enterCondition": "All steps verified successfully",
+    "exitCondition": "Terminal state — only RESET event can leave",
+    "invariant": "output contains final result"
+  },
+  "FAILED": {
+    "enterCondition": "Max retries exhausted OR unrecoverable error",
+    "exitCondition": "Terminal state — only RESET event can leave",
+    "invariant": "reason explains why it failed"
+  }
+}

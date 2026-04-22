@@ -1,3 +1,5 @@
+export {};
+
 /**
  * M2 - Prompt 测试框架
  *

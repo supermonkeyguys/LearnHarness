@@ -30,7 +30,10 @@
     "m7:logger":      "ts-node m7-infrastructure/code/02-logger.ts",
     "m7:metrics":     "ts-node m7-infrastructure/code/03-metrics.ts",
     "m7:retry":       "ts-node m7-infrastructure/code/04-retry.ts",
-    "m7:config":      "ts-node m7-infrastructure/code/05-config.ts"
+    "m7:config":      "ts-node m7-infrastructure/code/05-config.ts",
+    "m2:skill":       "ts-node m2-prompt-engineering/code/04-skill-loader.ts",
+    "m4:background":  "ts-node m4-multi-agent/code/06-background-tasks.ts",
+    "m4:protocols":   "ts-node m4-multi-agent/code/07-team-protocols.ts"
   },
   "dependencies": {},
   "devDependencies": {

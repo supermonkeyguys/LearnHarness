@@ -114,3 +114,46 @@ DAG 示例（PRD → 代码）：
 4. 如果任一 subagent 失败，只重试失败的那个
 
 完成后你会理解：并行执行带来的速度提升，以及合并时的复杂度。
+
+### 4.6 后台任务（来自 Claude Code 实际架构）
+
+> 参考：[learn-claude-code s08](https://github.com/shareAI-lab/learn-claude-code) — *"Run slow operations in the background; the agent keeps thinking"*
+
+与 DAG 调度（await 等待）不同，后台任务是 fire-and-forget：
+
+```
+DAG 调度：  agent → [await task A] → [await task B] → done
+后台任务：  agent → [start A] → [start B] → [do other work] → [drain notifications]
+                        ↓              ↓
+                    [A runs]       [B runs]   (parallel, non-blocking)
+```
+
+关键机制：**通知队列** — 后台任务完成后推入队列，agent loop 每轮开始前 drain 并注入 context。
+
+适用场景：npm install、运行测试、Docker 构建等耗时操作。
+
+见 `code/06-background-tasks.ts`
+
+### 4.7 团队协议（来自 Claude Code 实际架构）
+
+> 参考：[learn-claude-code s09/s10](https://github.com/shareAI-lab/learn-claude-code) — *"Teammates need shared communication rules"*
+
+Orchestrator 模式是单向的（lead 分发，subagent 执行）。真实多 agent 系统需要双向协议：
+
+**Shutdown 握手**：不能直接 kill 正在写文件的 agent
+```
+lead → shutdown_request(reqId) → agent
+lead ← shutdown_response(reqId, approve=true) ← agent（完成当前工作后）
+```
+
+**Plan 审批**：高风险操作（删文件、重构核心模块）需要 lead 审批
+```
+agent → plan_request(reqId, plan) → lead
+agent ← plan_response(reqId, approve/reject, feedback) ← lead
+```
+
+共同的 FSM：`pending → approved | rejected`
+
+通信机制：JSONL 邮箱（每个 agent 一个文件，append-only，无需消息队列服务）
+
+见 `code/07-team-protocols.ts`
